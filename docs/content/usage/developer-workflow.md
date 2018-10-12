@@ -291,8 +291,7 @@ is met.
 Kubernetes resources can be extended, using _Custom Resources_.
 Fission runs on top of Kubernetes and sets up your functions,
 environments and triggers as Custom Resources.  You can see even these
-custom resources from `kubectl`: try `kubectl get
-customeresourcedefinitions` or `kubectl get function.fission.io`
+custom resources from `kubectl`: try `kubectl get customeresourcedefinitions` or `kubectl get function.fission.io`
 
 Your specs directory is, basically, set of resources plus a bit of
 configuration.  Each YAML file contains one or more resources.  They
