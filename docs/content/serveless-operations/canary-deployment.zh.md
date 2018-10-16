@@ -25,3 +25,32 @@ fission内置有自动金丝雀部署。提供如下配置：
 * 定义多大的请求错误比例为部署失败
 * 定义新版本部署的增长速率，当已部署反馈问成功
 * 如果失败，函数可以在任何时间点回滚
+
+```
+[root@dev-86-208 hello]# fission function create --name hello-v1 --env nodejs --code hello-v1.js
+function 'hello-v1' created
+
+[root@dev-86-208 hello]# fission function create --name hello-v2 --env nodejs --code hello-v2.js
+function 'hello-v2' created
+
+[root@dev-86-208 hello]# fission route create --name route-canary --method GET --url /canary --function  hello-v1 --weight 0 --function hello-v2 --weight 100
+Incorrect Usage: flag provided but not defined: -name
+
+NAME:
+   fission httptrigger create - Create HTTP trigger
+
+USAGE:
+   fission httptrigger create [command options] [arguments...]
+
+OPTIONS:
+   --method value                    HTTP Method: GET|POST|PUT|DELETE|HEAD (default: "GET")
+   --url value                       URL pattern (See gorilla/mux supported patterns)
+   --function value                  Function name
+   --host value                      FQDN of the network host for route
+   --createingress                   Creates ingress with same URL, defaults to false
+   --fnNamespace value, --fns value  Namespace for function object (default: "default")
+   --spec                            Save to the spec directory instead of creating on cluster
+```
+
+### canary deploy will coming in fission 0.11
+
